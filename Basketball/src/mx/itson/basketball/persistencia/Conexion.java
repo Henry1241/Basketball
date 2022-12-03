@@ -19,7 +19,7 @@ public class Conexion {
      * proporcionados
      * @return La conexion inicializada hacia la base de datos.
      */
-    public Connection obtener() {
+    public static Connection obtener() {
         Connection conexion = null;
 
         try {
