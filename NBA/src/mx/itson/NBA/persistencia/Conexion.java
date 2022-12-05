@@ -7,9 +7,10 @@ package mx.itson.NBA.persistencia;
 import java.sql.Connection;
 import java.sql.DriverManager;
 /**
- *
+ *Clase que provee la conexion con la base de datos.
  * @author Jesus Alexis Martan Gallardo
  * Enrique Gonzalez Leyva
+ * Xylan Rodriguez Robles
  */
 public class Conexion {
     

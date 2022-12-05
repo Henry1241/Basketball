@@ -14,8 +14,10 @@ import java.util.List;
 import mx.itson.NBA.persistencia.Conexion;
 
 /**
- * test
+ * Clase que crea la consulta de las entidades dentro de la tabla de datos de la region oeste.
  * @author Enrique Gonzalez Leyva
+ * Jesus Alexis Martan Gallardo
+ * Xylan Rodriguez Robles
  */
 public class NBAWest {
     
@@ -30,7 +32,10 @@ public class NBAWest {
     private String vis;
     private String u10;
     private String rach;
-
+/**
+ * Crea una lista que se encarga de almacenar todos los datos de la consulta al DB.
+ * @return Todos los datos de nbadb_east de la tabla alumnos.
+ */
     public static List<NBAWest> obtenerTodos() {
         List<NBAWest> nbaWest = new ArrayList<>();
         try {
@@ -61,7 +66,11 @@ public class NBAWest {
         }
         return nbaWest;
     }
-
+/**
+ * Ese método se encarga de buscar los datos a través del campo idwest.
+ * @param idwest ID de los equipos de la region oeste.
+ * @return Los datos separados por el ID del DB.
+ */
     public static NBAWest obtenerPorId(int idwest) {
         NBAWest west = new NBAWest();
         try {
@@ -92,16 +101,16 @@ public class NBAWest {
 
     /**
      *
-     * @param equipo
-     * @param g
-     * @param p
-     * @param pct
-     * @param pdl
-     * @param conf
-     * @param loc
-     * @param vis
-     * @param u10
-     * @param rach
+     * @param equipo El nombre del equipo.
+     * @param g Victorias del equipo.
+     * @param p Derrotas del equipo.
+     * @param pct Porcentaje de victorias del equipo.
+     * @param pdl Juegos detras del equipo.
+     * @param conf Marca de conferencias del equipo.
+     * @param loc Partidas donde el equipo fue local.
+     * @param vis Partidas donde el equipo fue visitante.
+     * @param u10 Ultimas diez partidas del equipo.
+     * @param rach Racha de victorias del equipo.
      * @return Indica si se guardó o no el registro.
      */
     public static boolean guardar(String equipo, String g, String p, String pct, String pdl, String conf, String loc, String vis, String u10, String rach) {
@@ -129,7 +138,21 @@ public class NBAWest {
         }
         return resultado;
     }
-
+/**
+ * 
+ * @param idwest ID de los equipos de la region oeste.
+     * @param equipo El nombre del equipo.
+     * @param g Victorias del equipo.
+     * @param p Derrotas del equipo.
+     * @param pct Porcentaje de victorias del equipo.
+     * @param pdl Juegos detras del equipo.
+     * @param conf Marca de conferencias del equipo.
+     * @param loc Partidas donde el equipo fue local.
+     * @param vis Partidas donde el equipo fue visitante.
+     * @param u10 Ultimas diez partidas del equipo.
+     * @param rach Racha de victorias del equipo.
+ * @return La columna modificada con los datos propuestos.
+ */
     public static boolean editar(int idwest, String equipo, String g, String p, String pct, String pdl, String conf, String loc, String vis, String u10, String rach) {
         boolean resultado = false;
         try {
@@ -157,7 +180,11 @@ public class NBAWest {
         }
         return resultado;
     }
-    
+    /**
+     * Metodo que elimina una fila de datos especificando el id del mismo.
+     * @param idwest ID de los equipos de la region oeste.
+     * @return Un espacio vacio de la tabla del id especificado
+     */
     public static boolean eliminar(int idwest) {
         boolean resultado = false;
         try {

@@ -12,6 +12,8 @@ import mx.itson.NBA.entidades.NBAWest;
 /**
  *
  * @author Enrique Gonzalez Leyva
+ * Jesus Alexis Martan Gallardo
+ * Xylan Rodriguez Robles
  */
 public class PositionsWest extends javax.swing.JFrame {
 

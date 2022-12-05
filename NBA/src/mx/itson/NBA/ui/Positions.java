@@ -12,6 +12,7 @@ import mx.itson.NBA.entidades.NBAEast;
  *
  * @author Jesus Alexis Martan Gallardo
  * Enrique Gonzalez Leyva
+ * Jesus Alexis Martan Gallardo
  */
 public class Positions extends javax.swing.JFrame {
 

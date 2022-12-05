@@ -11,6 +11,8 @@ import mx.itson.NBA.entidades.NBAWest;
 /**
  *
  * @author Enrique Gonzalez Leyva
+ * Xylan Rodriguez Robles
+ * Jesus Alexis Martan Gallardo
  */
 public class AddTeamWest extends javax.swing.JDialog {
 

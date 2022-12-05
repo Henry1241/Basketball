@@ -7,7 +7,9 @@ package mx.itson.NBA.ui;
 
 /**
  *
- * @author enri0
+ * @author Enrique Gonzales Leyva
+ * Xylan Rodriguez Robles
+ * Jesus Alexis Martan Gallardo
  */
 public class Selección extends javax.swing.JFrame {
 
