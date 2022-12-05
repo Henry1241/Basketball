@@ -14,7 +14,7 @@ import java.util.List;
 import mx.itson.NBA.persistencia.Conexion;
 
 /**
- *
+ * test
  * @author Enrique Gonzalez Leyva
  */
 public class NBAWest {
