@@ -14,7 +14,7 @@ import java.util.List;
 import mx.itson.NBA.persistencia.Conexion;
 
 /**
- * Clase que crea la consulta de las entidades dentro de la tabla de datos de la region oeste.
+ * Clase que crea la consulta de las entidades dentro de la tabla de datos "west" de la region oeste.
  * @author Enrique Gonzalez Leyva
  * Jesus Alexis Martan Gallardo
  * Xylan Rodriguez Robles
@@ -34,7 +34,7 @@ public class NBAWest {
     private String rach;
 /**
  * Crea una lista que se encarga de almacenar todos los datos de la consulta al DB.
- * @return Todos los datos de nbadb_east de la tabla alumnos.
+ * @return Todos los datos de nbadb.west de la tabla alumnos.
  */
     public static List<NBAWest> obtenerTodos() {
         List<NBAWest> nbaWest = new ArrayList<>();
