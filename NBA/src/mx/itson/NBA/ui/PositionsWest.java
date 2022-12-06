@@ -207,7 +207,7 @@ public class PositionsWest extends javax.swing.JFrame {
         cargarTabla();
     }//GEN-LAST:event_btnBorrarActionPerformed
     private void cargarTabla(){
-        List<NBAWest> west = NBAWest.obtenerTodos();
+        List<NBAWest> west = NBAWest.obtener();
         DefaultTableModel modelo = (DefaultTableModel) tblPosicionesW.getModel();
         modelo.setRowCount(0);
 

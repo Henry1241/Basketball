@@ -27,7 +27,7 @@ public class AddTeamWest extends javax.swing.JDialog {
         
         this.idwest = idwest;
         if(idwest != 0){
-            NBAWest nbaWest = NBAWest.obtenerPorId(idwest);
+            NBAWest nbaWest = NBAWest.seleccion(idwest);
             txtEquipo.setText(nbaWest.getEquipo());
             txtVictorias.setText(nbaWest.getG());
             txtDerrotas.setText(nbaWest.getP());

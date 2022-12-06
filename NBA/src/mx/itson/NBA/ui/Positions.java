@@ -191,7 +191,7 @@ public class Positions extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
     private void llenarTabla() {
-        List<NBAEast> east = NBAEast.obtenerTodos();
+        List<NBAEast> east = NBAEast.obtener();
         DefaultTableModel modelo = (DefaultTableModel) tblPosiciones.getModel();
         modelo.setRowCount(0);
 

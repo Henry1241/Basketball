@@ -22,7 +22,7 @@ public class AddTeam extends javax.swing.JDialog {
         
         this.ideast = ideast;
         if(ideast != 0){
-            NBAEast nbaEast = NBAEast.obtenerPorId(ideast);
+            NBAEast nbaEast = NBAEast.seleccion(ideast);
             txtEquipo.setText(nbaEast.getEquipo());
             txtVictorias.setText(nbaEast.getG());
             txtDerrotas.setText(nbaEast.getP());

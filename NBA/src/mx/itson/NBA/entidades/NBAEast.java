@@ -34,7 +34,7 @@ public class NBAEast {
  * Crea una lista que se encarga de almacenar todos los datos de la consulta al DB.
  * @return Todos los datos de nbadb.east de la tabla alumnos.
  */
-    public static List<NBAEast> obtenerTodos() {
+    public static List<NBAEast> obtener() {
         List<NBAEast> nbaEast = new ArrayList<>();
         try {
 
@@ -69,7 +69,7 @@ public class NBAEast {
  * @param ideast ID de los equipos de la region este.
  * @return Los datos separados por el ID del DB.
  */
-    public static NBAEast obtenerPorId(int ideast) {
+    public static NBAEast seleccion(int ideast) {
         NBAEast east = new NBAEast();
         try {
             Connection conexion = Conexion.obtener();
