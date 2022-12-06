@@ -6,7 +6,7 @@
 package mx.itson.NBA.ui;
 
 /**
- *
+ *Interfaz que permite elegir entre las 2 regiones disponibles.
  * @author Enrique Gonzales Leyva
  * Xylan Rodriguez Robles
  * Jesus Alexis Martan Gallardo

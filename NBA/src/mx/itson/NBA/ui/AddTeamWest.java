@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import mx.itson.NBA.entidades.NBAWest;
 
 /**
- *
+ * Metodo con interfaz que permite añadir un equipo a la tabla de la region oeste.
  * @author Enrique Gonzalez Leyva
  * Xylan Rodriguez Robles
  * Jesus Alexis Martan Gallardo

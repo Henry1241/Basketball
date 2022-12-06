@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import mx.itson.NBA.entidades.NBAWest;
 
 /**
- *
+ *Metodo con interfaz que despliega la tabla de equipos y estadisticas de la region oeste.
  * @author Enrique Gonzalez Leyva
  * Jesus Alexis Martan Gallardo
  * Xylan Rodriguez Robles

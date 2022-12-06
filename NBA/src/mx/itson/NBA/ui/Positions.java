@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import mx.itson.NBA.entidades.NBAEast;
 
 /**
- *
+ *Metodo con interfaz que despliega la tabla de equipos y estadisticas de la region este.
  * @author Jesus Alexis Martan Gallardo
  * Enrique Gonzalez Leyva
  * Jesus Alexis Martan Gallardo

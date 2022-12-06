@@ -4,11 +4,12 @@ import javax.swing.JOptionPane;
 import mx.itson.NBA.entidades.NBAEast;
 
 /**
- *
+ * Metodo con interfaz que permite añadir un equipo a la tabla de la region este.
  * @author Jesus Alexis Martan Gallardo
  * Enrique Gonzalez Leyva
  * Xylan Rodriguez Robles
  */
+
 public class AddTeam extends javax.swing.JDialog {
 
     int ideast;
@@ -262,7 +263,10 @@ public class AddTeam extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * 
+ * @param evt 
+ */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String equipo = txtEquipo.getText();
         String g = txtVictorias.getText();
@@ -289,7 +293,10 @@ public class AddTeam extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar", "Error", JOptionPane.ERROR_MESSAGE);
 
     }//GEN-LAST:event_btnGuardarActionPerformed
-
+/**
+ * 
+ * @param evt 
+ */
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         String equipo = txtEquipo.getText();
         String g = txtVictorias.getText();
