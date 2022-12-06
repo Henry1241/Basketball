@@ -14,7 +14,7 @@ public class AddTeam extends javax.swing.JDialog {
 
     int ideast;
     /**
-     * Creates new form AlumnoForm
+     * Creates new form AddTeam
      */
     public AddTeam(java.awt.Frame parent, boolean modal, int ideast) {
         super(parent, modal);
