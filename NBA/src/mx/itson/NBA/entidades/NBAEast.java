@@ -98,7 +98,7 @@ public class NBAEast {
     }
 
     /**
-     *
+     * Metodo que se encarga de guardar una fila en la tabla.
      * @param equipo El nombre del equipo.
      * @param g Victorias del equipo.
      * @param p Derrotas del equipo.
@@ -150,7 +150,7 @@ public class NBAEast {
      * @param u10 Ultimas diez partidas del equipo.
      * @param rach Racha de victorias del equipo.
  * @return La columna modificada con los datos propuestos.
- */
+ */ 
     public static boolean editar(int ideast, String equipo, String g, String p, String pct, String pdl, String conf, String loc, String vis, String u10, String rach) {
         boolean resultado = false;
         try {
