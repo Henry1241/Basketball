@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 
 /**
- * Clase que crea la consulta de las entidades dentro de la tabla de datos de la region este.
+ * Clase que crea la consulta de las entidades dentro de la tabla de datos "east" de la region este.
  * @author Jesus Alexis Martan Gallardo
  * Enrique Gonzalez Leyva
  * Xylan Rodriguez Robles
@@ -32,7 +32,7 @@ public class NBAEast {
     private String rach;
 /**
  * Crea una lista que se encarga de almacenar todos los datos de la consulta al DB.
- * @return Todos los datos de nbadb_east de la tabla alumnos.
+ * @return Todos los datos de nbadb.east de la tabla alumnos.
  */
     public static List<NBAEast> obtenerTodos() {
         List<NBAEast> nbaEast = new ArrayList<>();
