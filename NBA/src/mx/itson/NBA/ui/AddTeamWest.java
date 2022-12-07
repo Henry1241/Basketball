@@ -16,22 +16,25 @@ import mx.itson.NBA.entidades.NBAWest;
  */
 public class AddTeamWest extends javax.swing.JDialog {
 
+    int idwest;
     /**
      * Creates new form AddTeamWest
      */
-    int idwest;
-    
     public AddTeamWest(java.awt.Frame parent, boolean modal, int idwest) {
         super(parent, modal);
         initComponents();
         
         this.idwest = idwest;
         if(idwest != 0){
+            NBAWest west = new NBAWest();
+            
+            String victoria = String.valueOf(west.getG());
+            String derrota = String.valueOf(west.getG());
+            
             NBAWest nbaWest = NBAWest.seleccion(idwest);
             txtEquipo.setText(nbaWest.getEquipo());
-            txtVictorias.setText(nbaWest.getG());
-            txtDerrotas.setText(nbaWest.getP());
-            txtPct.setText(nbaWest.getPCT());
+            txtVictorias.setText(victoria);
+            txtDerrotas.setText(derrota);
             txtPdl.setText(nbaWest.getPDL());
             txtConf.setText(nbaWest.getConf());
             txtLoc.setText(nbaWest.getLoc());
@@ -263,9 +266,8 @@ public class AddTeamWest extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String equipo = txtEquipo.getText();
-        String g = txtVictorias.getText();
-        String p = txtDerrotas.getText();
-        String pct = txtPct.getText();
+        int g = Integer.parseInt(txtVictorias.getText());
+        int p = Integer.parseInt(txtDerrotas.getText());
         String pdl = txtPdl.getText();
         String conf = txtConf.getText();
         String loc = txtLoc.getText();
@@ -274,8 +276,8 @@ public class AddTeamWest extends javax.swing.JDialog {
         String rach = txtRach.getText();
 
         boolean resultadoW = this.idwest == 0 ? 
-                NBAWest.guardar(equipo, g, p, pct, pdl, conf, loc, vis, u10, rach):
-                NBAWest.editar(idwest, equipo, g, p, pct, pdl, conf, loc, vis, u10, rach);
+                NBAWest.guardar(equipo, g, p, pdl, conf, loc, vis, u10, rach):
+                NBAWest.editar(idwest, equipo, g, p, pdl, conf, loc, vis, u10, rach);
                
                 
                 
@@ -289,9 +291,8 @@ public class AddTeamWest extends javax.swing.JDialog {
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         String equipo = txtEquipo.getText();
-        String g = txtVictorias.getText();
-        String p = txtDerrotas.getText();
-        String pct = txtPct.getText();
+        int g = Integer.parseInt(txtVictorias.getText());
+        int p = Integer.parseInt(txtDerrotas.getText());
         String pdl = txtPdl.getText();
         String conf = txtConf.getText();
         String loc = txtLoc.getText();
@@ -300,7 +301,7 @@ public class AddTeamWest extends javax.swing.JDialog {
         String rach = txtRach.getText();
         
         boolean resultado = this.idwest == 0 ? 
-                NBAWest.guardar(equipo, g, p, pct, pdl, conf, loc, vis, u10, rach):
+                NBAWest.guardar(equipo, g, p, pdl, conf, loc, vis, u10, rach):
                 NBAWest.eliminar(idwest);
         
         if(resultado){

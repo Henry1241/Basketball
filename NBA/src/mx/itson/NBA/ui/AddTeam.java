@@ -22,11 +22,15 @@ public class AddTeam extends javax.swing.JDialog {
         
         this.ideast = ideast;
         if(ideast != 0){
+            NBAEast east = new NBAEast();
+            
+            String victoria = String.valueOf(east.getG());
+            String derrota = String.valueOf(east.getG());
+            
             NBAEast nbaEast = NBAEast.seleccion(ideast);
             txtEquipo.setText(nbaEast.getEquipo());
-            txtVictorias.setText(nbaEast.getG());
-            txtDerrotas.setText(nbaEast.getP());
-            txtPct.setText(nbaEast.getPCT());
+            txtVictorias.setText(victoria);
+            txtDerrotas.setText(derrota);
             txtPdl.setText(nbaEast.getPDL());
             txtConf.setText(nbaEast.getConf());
             txtLoc.setText(nbaEast.getLoc());
@@ -263,26 +267,22 @@ public class AddTeam extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/**
- * 
- * @param evt 
- */
+
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String equipo = txtEquipo.getText();
-        String g = txtVictorias.getText();
-        String p = txtDerrotas.getText();
-        String pct = txtPct.getText();
+        int g = Integer.parseInt(txtVictorias.getText());
+        int p = Integer.parseInt(txtDerrotas.getText());
         String pdl = txtPdl.getText();
         String conf = txtConf.getText();
         String loc = txtLoc.getText();
         String vis = txtVis.getText();
         String u10 = txtU10.getText();
         String rach = txtRach.getText();
-       
-        
+            
         boolean resultado = this.ideast == 0 ? 
-                NBAEast.guardar(equipo, g, p, pct, pdl, conf, loc, vis, u10, rach):  
-                NBAEast.editar(ideast, equipo, g, p, pct, pdl, conf, loc, vis, u10, rach);
+                
+                NBAEast.guardar(equipo, g, p, pdl, conf, loc, vis, u10, rach):  
+                NBAEast.editar(ideast, equipo, g, p, pdl, conf, loc, vis, u10, rach);
                 
                 
                 
@@ -293,15 +293,11 @@ public class AddTeam extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar", "Error", JOptionPane.ERROR_MESSAGE);
 
     }//GEN-LAST:event_btnGuardarActionPerformed
-/**
- * 
- * @param evt 
- */
+
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         String equipo = txtEquipo.getText();
-        String g = txtVictorias.getText();
-        String p = txtDerrotas.getText();
-        String pct = txtPct.getText();
+        int g = txtVictorias.getColumns();
+        int p = txtDerrotas.getColumns();
         String pdl = txtPdl.getText();
         String conf = txtConf.getText();
         String loc = txtLoc.getText();
@@ -310,7 +306,7 @@ public class AddTeam extends javax.swing.JDialog {
         String rach = txtRach.getText();
         
         boolean resultado = this.ideast == 0 ? 
-                NBAEast.guardar(equipo, g, p, pct, pdl, conf, loc, vis, u10, rach):
+                NBAEast.guardar(equipo, g, p, pdl, conf, loc, vis, u10, rach):
                 NBAEast.eliminar(ideast);
         
         if(resultado){

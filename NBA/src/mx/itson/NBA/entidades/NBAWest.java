@@ -23,15 +23,15 @@ public class NBAWest {
     
     private int idwest;
     private String equipo;
-    private String g;
-    private String p;
-    private String pct;
+    private int g;
+    private int p;
     private String pdl;
     private String conf;
     private String loc;
     private String vis;
     private String u10;
     private String rach;
+    private double pctv;
 /**
  * Crea una lista que se encarga de almacenar todos los datos de la consulta al DB.
  * @return Todos los datos de nbadb.west de la tabla alumnos.
@@ -42,21 +42,21 @@ public class NBAWest {
 
             Connection conexion = Conexion.obtener();
             Statement statement = conexion.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT idwest, equipo, g, p, pct, pdl, conf, loc, vis, u10, rach FROM west");
+            ResultSet resultSet = statement.executeQuery("SELECT idwest, equipo, g, p, pdl, conf, loc, vis, u10, rach, g / (g + p) FROM west");
 
             while (resultSet.next()) {
                 NBAWest west = new NBAWest();
                 west.setIdwest(resultSet.getInt(1));
                 west.setEquipo(resultSet.getString(2));
-                west.setG(resultSet.getString(3));
-                west.setP(resultSet.getString(4));
-                west.setPCT(resultSet.getString(5));
-                west.setPDL(resultSet.getString(6));
-                west.setConf(resultSet.getString(7));
-                west.setLoc(resultSet.getString(8));
-                west.setVis(resultSet.getString(9));
-                west.setU10(resultSet.getString(10));
-                west.setRach(resultSet.getString(11));
+                west.setG(resultSet.getInt(3));
+                west.setP(resultSet.getInt(4));
+                west.setPDL(resultSet.getString(5));
+                west.setConf(resultSet.getString(6));
+                west.setLoc(resultSet.getString(7));
+                west.setVis(resultSet.getString(8));
+                west.setU10(resultSet.getString(9));
+                west.setRach(resultSet.getString(10));
+                west.setPctv(resultSet.getDouble(11));
 
                 nbaWest.add(west);
 
@@ -75,22 +75,22 @@ public class NBAWest {
         NBAWest west = new NBAWest();
         try {
             Connection conexion = Conexion.obtener();
-            PreparedStatement statement = conexion.prepareStatement("SELECT idwest, equipo, g, p, pct, pdl, conf, loc, vis, u10, rach FROM west WHERE idwest = ?");
+            PreparedStatement statement = conexion.prepareStatement("SELECT idwest, equipo, g, p, pdl, conf, loc, vis, u10, rach, g / (g + p) FROM west WHERE idwest = ?");
             statement.setInt(1, idwest);
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 west.setIdwest(resultSet.getInt(1));
                 west.setEquipo(resultSet.getString(2));
-                west.setG(resultSet.getString(3));
-                west.setP(resultSet.getString(4));
-                west.setPCT(resultSet.getString(5));
-                west.setPDL(resultSet.getString(6));
-                west.setConf(resultSet.getString(7));
-                west.setLoc(resultSet.getString(8));
-                west.setVis(resultSet.getString(9));
-                west.setU10(resultSet.getString(10));
-                west.setRach(resultSet.getString(11));
+                west.setG(resultSet.getInt(3));
+                west.setP(resultSet.getInt(4));
+                west.setPDL(resultSet.getString(5));
+                west.setConf(resultSet.getString(6));
+                west.setLoc(resultSet.getString(7));
+                west.setVis(resultSet.getString(8));
+                west.setU10(resultSet.getString(9));
+                west.setRach(resultSet.getString(10));
+                west.setPctv(resultSet.getDouble(11));
             }
 
         } catch (Exception ex) {
@@ -104,7 +104,6 @@ public class NBAWest {
      * @param equipo El nombre del equipo.
      * @param g Victorias del equipo.
      * @param p Derrotas del equipo.
-     * @param pct Porcentaje de victorias del equipo.
      * @param pdl Juegos detras del equipo.
      * @param conf Marca de conferencias del equipo.
      * @param loc Partidas donde el equipo fue local.
@@ -113,22 +112,21 @@ public class NBAWest {
      * @param rach Racha de victorias del equipo.
      * @return Indica si se guardó o no el registro.
      */
-    public static boolean guardar(String equipo, String g, String p, String pct, String pdl, String conf, String loc, String vis, String u10, String rach) {
+    public static boolean guardar(String equipo, int g, int p, String pdl, String conf, String loc, String vis, String u10, String rach) {
         boolean resultado = false;
         try {
             Connection conexion = Conexion.obtener();
-            String consulta = "INSERT INTO west(equipo, g, p, pct, pdl, conf, loc, vis, u10, rach) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String consulta = "INSERT INTO west(equipo, g, p, pdl, conf, loc, vis, u10, rach) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, equipo);
-            statement.setString(2, g);
-            statement.setString(3, p);
-            statement.setString(4, pct);
-            statement.setString(5, pdl);
-            statement.setString(6, conf);
-            statement.setString(7, loc);
-            statement.setString(8, vis);
-            statement.setString(9, u10);
-            statement.setString(10, rach);
+            statement.setInt(2, g);
+            statement.setInt(3, p);
+            statement.setString(4, pdl);
+            statement.setString(5, conf);
+            statement.setString(6, loc);
+            statement.setString(7, vis);
+            statement.setString(8, u10);
+            statement.setString(9, rach);
             statement.execute();
             resultado = statement.getUpdateCount() == 1;
             conexion.close();
@@ -144,7 +142,6 @@ public class NBAWest {
      * @param equipo El nombre del equipo.
      * @param g Victorias del equipo.
      * @param p Derrotas del equipo.
-     * @param pct Porcentaje de victorias del equipo.
      * @param pdl Juegos detras del equipo.
      * @param conf Marca de conferencias del equipo.
      * @param loc Partidas donde el equipo fue local.
@@ -153,23 +150,22 @@ public class NBAWest {
      * @param rach Racha de victorias del equipo.
  * @return La columna modificada con los datos propuestos.
  */
-    public static boolean editar(int idwest, String equipo, String g, String p, String pct, String pdl, String conf, String loc, String vis, String u10, String rach) {
+    public static boolean editar(int idwest, String equipo, int g, int p, String pdl, String conf, String loc, String vis, String u10, String rach) {
         boolean resultado = false;
         try {
             Connection conexion = Conexion.obtener();
-            String consulta = "UPDATE west SET equipo = ?, g = ?, p = ?, pct = ?, pdl = ?, conf = ?, loc = ?, vis = ?, u10 = ?, rach = ? WHERE idwest = ?";
+            String consulta = "UPDATE west SET equipo = ?, g = ?, p = ?, pdl = ?, conf = ?, loc = ?, vis = ?, u10 = ?, rach = ? WHERE idwest = ?";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, equipo);
-            statement.setString(2, g);
-            statement.setString(3, p);
-            statement.setString(4, pct);
-            statement.setString(5, pdl);
-            statement.setString(6, conf);
-            statement.setString(7, loc);
-            statement.setString(8, vis);
-            statement.setString(9, u10);
-            statement.setString(10, rach);
-            statement.setInt(11, idwest);
+            statement.setInt(2, g);
+            statement.setInt(3, p);
+            statement.setString(4, pdl);
+            statement.setString(5, conf);
+            statement.setString(6, loc);
+            statement.setString(7, vis);
+            statement.setString(8, u10);
+            statement.setString(9, rach);
+            statement.setInt(10, idwest);
             
             statement.execute();
             
@@ -234,43 +230,29 @@ public class NBAWest {
     /**
      * @return the G
      */
-    public String getG() {
+    public int getG() {
         return g;
     }
 
     /**
      * @param g the G to set
      */
-    public void setG(String g) {
+    public void setG(int g) {
         this.g = g;
     }
 
     /**
      * @return the P
      */
-    public String getP() {
+    public int getP() {
         return p;
     }
 
     /**
      * @param p the P to set
      */
-    public void setP(String p) {
+    public void setP(int p) {
         this.p = p;
-    }
-
-    /**
-     * @return the PCT
-     */
-    public String getPCT() {
-        return pct;
-    }
-
-    /**
-     * @param pct the PCT to set
-     */
-    public void setPCT(String pct) {
-        this.pct = pct;
     }
 
     /**
@@ -355,6 +337,20 @@ public class NBAWest {
      */
     public void setPDL(String pdl) {
         this.pdl = pdl;
+    }
+
+    /**
+     * @return the pctv
+     */
+    public double getPctv() {
+        return pctv;
+    }
+
+    /**
+     * @param pctv the pctv to set
+     */
+    public void setPctv(double pctv) {
+        this.pctv = pctv;
     }
     
 }

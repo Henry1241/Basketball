@@ -92,7 +92,7 @@ public class Positions extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Equipo", "G", "P", "Pct", "PDL", "Conf", "Loc", "Vis", "U10", "Rach"
+                "ID", "Equipo", "G", "P", "PDL", "Conf", "Loc", "Vis", "U10", "Rach", "Pctv"
             }
         ));
         jScrollPane1.setViewportView(tblPosiciones);
@@ -101,7 +101,7 @@ public class Positions extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE)
                 .addContainerGap())
@@ -188,7 +188,7 @@ public class Positions extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         llenarTabla();
         tblPosiciones.removeColumn(tblPosiciones.getColumnModel().getColumn(0));
-        
+
     }//GEN-LAST:event_formWindowOpened
     private void llenarTabla() {
         List<NBAEast> east = NBAEast.obtener();
@@ -201,18 +201,19 @@ public class Positions extends javax.swing.JFrame {
                 n.getEquipo(),
                 n.getG(),
                 n.getP(),
-                n.getPCT(),
                 n.getPDL(),
                 n.getConf(),
                 n.getLoc(),
                 n.getVis(),
                 n.getU10(),
-                n.getRach()
+                n.getRach(),
+                n.getPctv()
 
             });
         }
         
     }    
+    
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         AddTeam addTeam = new AddTeam(this, true, 0);

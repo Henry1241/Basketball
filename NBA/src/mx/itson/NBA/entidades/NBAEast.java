@@ -21,15 +21,15 @@ public class NBAEast {
     
     private int ideast;
     private String equipo;
-    private String g;
-    private String p;
-    private String pct;
+    private int g;
+    private int p;
     private String pdl;
     private String conf;
     private String loc;
     private String vis;
     private String u10;
     private String rach;
+    private double pctv;
 /**
  * Crea una lista que se encarga de almacenar todos los datos de la consulta al DB.
  * @return Todos los datos de nbadb.east de la tabla alumnos.
@@ -40,21 +40,21 @@ public class NBAEast {
 
             Connection conexion = Conexion.obtener();
             Statement statement = conexion.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT ideast, equipo, g, p, pct, pdl, conf, loc, vis, u10, rach FROM east");
+            ResultSet resultSet = statement.executeQuery("SELECT ideast, equipo, g, p, pdl, conf, loc, vis, u10, rach, g / (g + p) FROM east");
 
             while (resultSet.next()) {
                 NBAEast east = new NBAEast();
                 east.setIdeast(resultSet.getInt(1));
                 east.setEquipo(resultSet.getString(2));
-                east.setG(resultSet.getString(3));
-                east.setP(resultSet.getString(4));
-                east.setPCT(resultSet.getString(5));
-                east.setPDL(resultSet.getString(6));
-                east.setConf(resultSet.getString(7));
-                east.setLoc(resultSet.getString(8));
-                east.setVis(resultSet.getString(9));
-                east.setU10(resultSet.getString(10));
-                east.setRach(resultSet.getString(11));
+                east.setG(resultSet.getInt(3));
+                east.setP(resultSet.getInt(4));
+                east.setPDL(resultSet.getString(5));
+                east.setConf(resultSet.getString(6));
+                east.setLoc(resultSet.getString(7));
+                east.setVis(resultSet.getString(8));
+                east.setU10(resultSet.getString(9));
+                east.setRach(resultSet.getString(10));
+                east.setPctv(resultSet.getDouble(11));
 
                 nbaEast.add(east);
 
@@ -73,22 +73,22 @@ public class NBAEast {
         NBAEast east = new NBAEast();
         try {
             Connection conexion = Conexion.obtener();
-            PreparedStatement statement = conexion.prepareStatement("SELECT ideast, equipo, g, p, pct, pdl, conf, loc, vis, u10, rach FROM east WHERE ideast = ?");
+            PreparedStatement statement = conexion.prepareStatement("SELECT ideast, equipo, g, p, pdl, conf, loc, vis, u10, rach, g / (g + p) FROM east WHERE ideast = ?");
             statement.setInt(1, ideast);
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 east.setIdeast(resultSet.getInt(1));
                 east.setEquipo(resultSet.getString(2));
-                east.setG(resultSet.getString(3));
-                east.setP(resultSet.getString(4));
-                east.setPCT(resultSet.getString(5));
-                east.setPDL(resultSet.getString(6));
-                east.setConf(resultSet.getString(7));
-                east.setLoc(resultSet.getString(8));
-                east.setVis(resultSet.getString(9));
-                east.setU10(resultSet.getString(10));
-                east.setRach(resultSet.getString(11));
+                east.setG(resultSet.getInt(3));
+                east.setP(resultSet.getInt(4));
+                east.setPDL(resultSet.getString(5));
+                east.setConf(resultSet.getString(6));
+                east.setLoc(resultSet.getString(7));
+                east.setVis(resultSet.getString(8));
+                east.setU10(resultSet.getString(9));
+                east.setRach(resultSet.getString(10));
+                east.setPctv(resultSet.getDouble(11));
             }
 
         } catch (Exception ex) {
@@ -102,7 +102,6 @@ public class NBAEast {
      * @param equipo El nombre del equipo.
      * @param g Victorias del equipo.
      * @param p Derrotas del equipo.
-     * @param pct Porcentaje de victorias del equipo.
      * @param pdl Juegos detras del equipo.
      * @param conf Marca de conferencias del equipo.
      * @param loc Partidas donde el equipo fue local.
@@ -111,22 +110,21 @@ public class NBAEast {
      * @param rach Racha de victorias del equipo.
      * @return Indica si se guardó o no el registro.
      */
-    public static boolean guardar(String equipo, String g, String p, String pct, String pdl, String conf, String loc, String vis, String u10, String rach) {
+    public static boolean guardar(String equipo, int g, int p, String pdl, String conf, String loc, String vis, String u10, String rach) {
         boolean resultado = false;
         try {
             Connection conexion = Conexion.obtener();
-            String consulta = "INSERT INTO east(equipo, g, p, pct, pdl, conf, loc, vis, u10, rach) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String consulta = "INSERT INTO east(equipo, g, p, pdl, conf, loc, vis, u10, rach) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, equipo);
-            statement.setString(2, g);
-            statement.setString(3, p);
-            statement.setString(4, pct);
-            statement.setString(5, pdl);
-            statement.setString(6, conf);
-            statement.setString(7, loc);
-            statement.setString(8, vis);
-            statement.setString(9, u10);
-            statement.setString(10, rach);
+            statement.setInt(2, g);
+            statement.setInt(3, p);
+            statement.setString(4, pdl);
+            statement.setString(5, conf);
+            statement.setString(6, loc);
+            statement.setString(7, vis);
+            statement.setString(8, u10);
+            statement.setString(9, rach);
             statement.execute();
             resultado = statement.getUpdateCount() == 1;
             conexion.close();
@@ -142,7 +140,6 @@ public class NBAEast {
      * @param equipo El nombre del equipo.
      * @param g Victorias del equipo.
      * @param p Derrotas del equipo.
-     * @param pct Porcentaje de victorias del equipo.
      * @param pdl Juegos detras del equipo.
      * @param conf Marca de conferencias del equipo.
      * @param loc Partidas donde el equipo fue local.
@@ -151,23 +148,22 @@ public class NBAEast {
      * @param rach Racha de victorias del equipo.
  * @return La columna modificada con los datos propuestos.
  */
-    public static boolean editar(int ideast, String equipo, String g, String p, String pct, String pdl, String conf, String loc, String vis, String u10, String rach) {
+    public static boolean editar(int ideast, String equipo, int g, int p, String pdl, String conf, String loc, String vis, String u10, String rach) {
         boolean resultado = false;
         try {
             Connection conexion = Conexion.obtener();
-            String consulta = "UPDATE east SET equipo = ?, g = ?, p = ?, pct = ?, pdl = ?, conf = ?, loc = ?, vis = ?, u10 = ?, rach = ? WHERE ideast = ?";
+            String consulta = "UPDATE east SET equipo = ?, g = ?, p = ?, pdl = ?, conf = ?, loc = ?, vis = ?, u10 = ?, rach = ? WHERE ideast = ?";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, equipo);
-            statement.setString(2, g);
-            statement.setString(3, p);
-            statement.setString(4, pct);
-            statement.setString(5, pdl);
-            statement.setString(6, conf);
-            statement.setString(7, loc);
-            statement.setString(8, vis);
-            statement.setString(9, u10);
-            statement.setString(10, rach);
-            statement.setInt(11, ideast);
+            statement.setInt(2, g);
+            statement.setInt(3, p);
+            statement.setString(4, pdl);
+            statement.setString(5, conf);
+            statement.setString(6, loc);
+            statement.setString(7, vis);
+            statement.setString(8, u10);
+            statement.setString(9, rach);
+            statement.setInt(10, ideast);
             
             statement.execute();
             
@@ -232,43 +228,29 @@ public class NBAEast {
     /**
      * @return the G
      */
-    public String getG() {
+    public int getG() {
         return g;
     }
 
     /**
      * @param g the G to set
      */
-    public void setG(String g) {
+    public void setG(int g) {
         this.g = g;
     }
 
     /**
      * @return the P
      */
-    public String getP() {
+    public int getP() {
         return p;
     }
 
     /**
      * @param p the P to set
      */
-    public void setP(String p) {
+    public void setP(int p) {
         this.p = p;
-    }
-
-    /**
-     * @return the PCT
-     */
-    public String getPCT() {
-        return pct;
-    }
-
-    /**
-     * @param pct the PCT to set
-     */
-    public void setPCT(String pct) {
-        this.pct = pct;
     }
 
     /**
@@ -353,6 +335,20 @@ public class NBAEast {
      */
     public void setPDL(String pdl) {
         this.pdl = pdl;
+    }
+
+    /**
+     * @return the pctv
+     */
+    public double getPctv() {
+        return pctv;
+    }
+
+    /**
+     * @param pctv the pctv to set
+     */
+    public void setPctv(double pctv) {
+        this.pctv = pctv;
     }
 
 }

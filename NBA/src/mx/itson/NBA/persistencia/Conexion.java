@@ -21,7 +21,7 @@ public class Conexion {
     public static Connection obtener() {
         Connection conexion = null;
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/nbadb?user=root&password=admin");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3308/nbadb?user=root&password=Ninten22");
         } catch (Exception ex){
             System.err.println("Ocurrió un error: " + ex.getMessage());
         }

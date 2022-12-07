@@ -78,7 +78,7 @@ public class PositionsWest extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Equipo", "G", "P", "Pct", "PDL", "Conf", "Loc", "Vis", "U10", "Rach"
+                "ID", "Equipo", "G", "P", "PDL", "Conf", "Loc", "Vis", "U10", "Rach", "PCTV"
             }
         ));
         jScrollPane2.setViewportView(tblPosicionesW);
@@ -217,21 +217,17 @@ public class PositionsWest extends javax.swing.JFrame {
                 n.getEquipo(),
                 n.getG(),
                 n.getP(),
-                n.getPCT(),
                 n.getPDL(),
                 n.getConf(),
                 n.getLoc(),
                 n.getVis(),
                 n.getU10(),
-                n.getRach()
+                n.getRach(),
+                n.getPctv()
 
             });
         }
-        
-        
-        
-        
-        
+
     }
     /**
      * @param args the command line arguments
