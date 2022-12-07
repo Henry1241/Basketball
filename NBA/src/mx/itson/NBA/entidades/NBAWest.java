@@ -100,7 +100,7 @@ public class NBAWest {
     }
 
     /**
-     *
+     *Metodo que se encarga de guardar una fila en la tabla.
      * @param equipo El nombre del equipo.
      * @param g Victorias del equipo.
      * @param p Derrotas del equipo.
@@ -137,7 +137,7 @@ public class NBAWest {
         return resultado;
     }
 /**
- * 
+ * Metodo que se encarga de editar una fila de la tabla.
  * @param idwest ID de los equipos de la region oeste.
      * @param equipo El nombre del equipo.
      * @param g Victorias del equipo.

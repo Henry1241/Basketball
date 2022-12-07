@@ -17,7 +17,7 @@ import mx.itson.NBA.entidades.NBAEast;
 public class Positions extends javax.swing.JFrame {
 
     /**
-     * Creates new form AlumnoListado
+     * Creates new form Position
      */
     public Positions() {
         initComponents();
